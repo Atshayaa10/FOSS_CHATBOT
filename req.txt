@@ -1,0 +1,9 @@
+flask==3.0.7
+flask-cors==3.0.10
+python-dotenv==1.0.0
+openai==1.35.0
+pinecone-client==5.0.1
+PyPDF2==3.0.1
+requests==2.31.0
+sentence-transformers==3.0.1
+beautifulsoup4==4.12.3

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOSS-CIT Chatbot</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #f8f9fb;
+      margin: 0;
+      padding: 0;
+    }
+
+    .chat-container {
+      width: 360px;
+      height: 520px;
+      border-radius: 16px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      padding: 14px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      background: #f4f6fb;
+    }
+
+    .message {
+      margin: 10px 0;
+      padding: 10px 14px;
+      border-radius: 14px;
+      max-width: 75%;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .user {
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 2px 4px rgba(37, 117, 252, 0.3);
+    }
+
+    .bot {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      color: #333;
+      margin-right: auto;
+      border-bottom-left-radius: 4px;
+      border-left: 3px solid #28a745;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .bot ul {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+
+    .bot li {
+      margin: 4px 0;
+      list-style-type: disc;
+    }
+
+    .bot strong {
+      color: #1a5490;
+      font-weight: 600;
+    }
+
+    .bot div {
+      margin-top: 8px;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+      background: #fff;
+    }
+
+    .chat-input input {
+      flex: 1;
+      border: none;
+      padding: 12px;
+      font-size: 14px;
+      outline: none;
+      border-radius: 0;
+    }
+
+    .chat-input button {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      border: none;
+      padding: 0 18px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .chat-input button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chat-container">
+    <div class="chat-header">FOSS-CIT Assistant</div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Ask me anything about FOSS, programming, or tech careers..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatMessages = document.getElementById("chatMessages");
+
+    // Add welcome message
+    window.onload = function() {
+      addMessage(`Hello! 👋 Welcome to FOSS-CIT!
+
+I'm your AI assistant, here to help you with:
+• FOSS-CIT information - Our programs, objectives, and procedures
+• Open Source Software - Technologies, tools, and best practices  
+• Programming & Development - Coding questions and guidance
+• Technology Education - Learning resources and career advice
+
+Try asking me:
+• "What is FOSS-CIT?"
+• "How do I start programming?"
+• "What is open source software?"
+• "Career advice in tech"
+
+What would you like to know about today? 😊`, "bot");
+    };
+
+    function addMessage(text, sender, isTyping=false) {
+      const msg = document.createElement("div");
+      msg.classList.add("message", sender);
+
+      if (isTyping) msg.id = "typing";
+
+      if (sender === "user") {
+        msg.innerHTML = `<strong>You:</strong> ${text}`;
+      } else {
+        let formattedText = text
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // bold
+          .replace(/^• (.+)$/gm, '<li>$1</li>') // bullets
+          .replace(/\n/g, '<br>'); // line breaks
+
+        // Wrap consecutive list items in <ul>
+        formattedText = formattedText.replace(/(<li>.*?<\/li>(?:\s*<li>.*?<\/li>)*)/gs, '<ul>$1</ul>');
+
+        msg.innerHTML = `<strong>Assistant:</strong> <div style="margin-top:8px">${formattedText}</div>`;
+      }
+
+      chatMessages.appendChild(msg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      return msg;
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById("userInput");
+      const text = input.value.trim();
+      if (!text) return;
+
+      // Add user message
+      addMessage(text, "user");
+      input.value = "";
+
+      // Typing indicator
+      const typingMsg = addMessage("<em>Typing...</em>", "bot", true);
+
+      try {
+        const response = await fetch('http://127.0.0.1:5000/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text })
+        });
+
+        if (typingMsg) typingMsg.remove();
+
+        if (response.ok) {
+          const data = await response.json();
+          addMessage(data.response || "Sorry, I couldn't understand the response.", "bot");
+        } else {
+          addMessage("Error connecting to the chatbot server.", "bot");
+        }
+      } catch (err) {
+        if (typingMsg) typingMsg.remove();
+        addMessage("Cannot reach chatbot server. Make sure backend is running.", "bot");
+        console.error(err);
+      }
+    }
+  </script>
+
+</body>
+</html>
