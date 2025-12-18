@@ -177,7 +177,7 @@ When answering, use phrases like "FOSS-CIT community", "our community", or "the 
                 {"role": "user", "content": user_message}
             ],
             max_tokens=500,
-            temperature=0.7
+            temperature=0.5
         )
         
         return response.choices[0].message.content
