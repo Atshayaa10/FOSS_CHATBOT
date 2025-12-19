@@ -64,6 +64,7 @@ htmlcov/
 # Model Cache (Sentence Transformers)
 .cache/
 models/
+model_cache/
 sentence_transformers_cache/
 
 # Temporary files
