@@ -1,0 +1,151 @@
+{
+  "api_config": {
+    "chat_model": "openrouter/free",
+    "openrouter_base_url": "https://openrouter.ai/api/v1",
+    "pinecone_index_name": "foss-cit-knowledge",
+    "embedding_dimension": 384,
+    "embedding_model": "all-MiniLM-L6-v2"
+  },
+  "file_paths": {
+    "knowledge_base": "comprehensive_knowledge_base.json",
+    "complete_knowledge_base": "complete_knowledge_base.json",
+    "chat_html": "chat.html"
+  },
+  "search_config": {
+    "top_k": 5,
+    "similarity_threshold": 0.3,
+    "chunk_size": 500,
+    "chunk_overlap": 50
+  },
+  "conversation_config": {
+    "max_history_length": 15,
+    "enable_memory": true
+  },
+  "ultra_brief_responses": {
+    "hello": "Hi! I help with FOSS-CIT info.",
+    "hi": "Hello! What FOSS-CIT info do you need?",
+    "hey": "Hey! Ask me about FOSS-CIT.",
+    "what is foss-cit": "FOSS-CIT is a student organization at Coimbatore Institute of Technology that helps students learn open source technologies.",
+    "what is foss cit": "FOSS-CIT is a student organization at Coimbatore Institute of Technology that helps students learn open source technologies.",
+    "about foss-cit": "FOSS-CIT was founded by students at CIT to create a community for learning open source technologies.",
+    "foss-cit mission": "To help students learn essential technical skills and work with open-source platforms.",
+    "foss cit mission": "To help students learn essential technical skills and work with open-source platforms.",
+    "founded foss-cit": "FOSS-CIT was founded in 2018 by Dhileepan Thangamanimaran, Sai Adarsh, and Sibi Bose.",
+    "who founded foss-cit": "Dhileepan Thangamanimaran, Sai Adarsh, and Sibi Bose founded FOSS-CIT in 2018.",
+    "history of foss-cit": "FOSS-CIT was established in 2018 by three CIT students: Dhileepan Thangamanimaran, Sai Adarsh, and Sibi Bose.",
+    "when was foss founded": "FOSS-CIT was founded in 2018.",
+    "when was foss-cit founded": "FOSS-CIT was founded in 2018.",
+    "when was foss started": "FOSS-CIT started in 2018.",
+    "when was foss-cit started": "FOSS-CIT started in 2018.",
+    "what year was foss founded": "2018",
+    "founding year": "FOSS-CIT was founded in 2018.",
+    "start year": "FOSS-CIT started in 2018.",
+    "establishment year": "2018",
+    "year of founding": "2018",
+    "when foss-cit started": "2018",
+    "when did foss start": "FOSS-CIT started in 2018.",
+    "when did foss-cit start": "FOSS-CIT started in 2018.",
+    "founders of foss-cit": "The founders are Dhileepan Thangamanimaran, Sai Adarsh, and Sibi Bose.",
+    "who initiated foss-cit": "Dhileepan Thangamanimaran, Sai Adarsh, and Sibi Bose initiated FOSS-CIT in 2018.",
+    "who started foss-cit": "Dhileepan Thangamanimaran, Sai Adarsh, and Sibi Bose started FOSS-CIT.",
+    "what activities": "Bootcamps, workshops, coding contests, hackathons, and career guidance.",
+    "activities": "Bootcamps, workshops, coding contests, hackathons, and career guidance.",
+    "events": "Bootcamps, workshops, contests, webinars, and meet-ups.",
+    "programs": "Training bootcamps, workshops, coding contests, and interview prep.",
+    "training": "We offer bootcamps, workshops, and hands-on coding sessions.",
+    "how many members": "500+ active members.",
+    "members": "500+ active members.",
+    "achievements": "500+ members, training sessions, collaborations with Mozilla and Google.",
+    "contact": "Email: fosscit@gmail.com, Location: CIT Coimbatore.",
+    "location": "Department of Computing, CIT Coimbatore, Tamil Nadu.",
+    "email": "fosscit@gmail.com",
+    "address": "CIT Coimbatore, Avinashi Road, Peelamedu, Tamil Nadu 641014.",
+    "what can you do": "I provide quick FOSS-CIT info, events, and contact details.",
+    "who are you": "I'm FOSS Pulse, the heartbeat of innovation at FOSS-CIT. I help you explore events, projects, and open-source opportunities.",
+    "what are you": "I'm FOSS Pulse - your AI assistant for FOSS-CIT information, events, and open-source guidance.",
+    "tell me about yourself": "I'm FOSS Pulse, the intelligent assistant for FOSS-CIT community. I'm here to help you discover events, projects, and contribute to open source.",
+    "your name": "FOSS Pulse - the heartbeat of innovation at FOSS-CIT.",
+    "assistant name": "FOSS Pulse",
+    "what is foss pulse": "FOSS Pulse is the AI-powered assistant for FOSS-CIT, designed to help students explore events, projects, and open-source opportunities.",
+    "about foss pulse": "FOSS Pulse is the intelligent chatbot that serves as the heartbeat of innovation at FOSS-CIT, helping you discover and contribute to open source.",
+    "help": "Ask about FOSS-CIT activities, team, or contact info.",
+    "what is programming": "Writing code to create software and applications.",
+    "how to start programming": "Start with Python, practice daily, build small projects.",
+    "career advice": "Learn one language well, build projects, practice regularly.",
+    "open source": "Free software that anyone can use, modify, and share.",
+    "what is open source": "Free software that anyone can use, modify, and share."
+  },
+  "hardcoded_responses": {
+    "founders": {
+      "keywords": ["founder", "founded", "started", "created", "who started", "who founded", "when founded", "when started", "what year", "founding year", "start year", "establishment year"],
+      "response": "FOSS-CIT was founded in 2018 by Dhileepan Thangamanimaran, Sai Adarsh, and Sibi Bose. They established this community to help students learn about open source software and enhance their technical skills."
+    },
+    "about": {
+      "keywords": ["what is foss", "about foss", "tell me about foss", "foss-cit"],
+      "response": "FOSS-CIT (Free and Open Source Software Community at CIT) is a student community at Coimbatore Institute of Technology. Our mission is to help students learn essential technical skills and contribute to open-source projects. We conduct bootcamps, workshops, hackathons, and webinars."
+    },
+    "events": {
+      "keywords": ["events", "activities", "bootcamp", "workshop", "hackathon"],
+      "response": "FOSS-CIT organizes various events including: Bootcamps (intensive training), Workshops (hands-on skill building), Hackathons (coding competitions), Webinars (expert talks), Coding Contests, Design Contests, and Interview Prep Sessions."
+    },
+    "greeting": {
+      "keywords": ["hello", "hi", "hey", "good morning", "good evening"],
+      "response": "🐧 Welcome to FOSS Pulse! The heartbeat of innovation at FOSS-CIT. I can help you with information about FOSS-CIT community, events, projects, and open-source opportunities. How can I assist you today?"
+    },
+    "assistant_info": {
+      "keywords": ["who are you", "what are you", "your name", "tell me about yourself", "about you", "foss pulse", "what is foss pulse"],
+      "response": "I'm FOSS Pulse - the heartbeat of innovation at FOSS-CIT! I'm an AI assistant designed to help students explore events, projects, and open-source opportunities. I can provide information about FOSS-CIT activities, answer programming questions, and guide you on your open-source journey. Ask. Discover. Contribute."
+    },
+    "thanks": {
+      "keywords": ["thank", "thanks", "thank you"],
+      "response": "You're welcome! If you have any more questions about FOSS-CIT, open source, or programming, feel free to ask!"
+    }
+  },
+  "ai_prompts": {
+    "system_prompt_brief": "You are FOSS Pulse, the AI assistant for FOSS-CIT (Free and Open Source Software Community at Coimbatore Institute of Technology).\n\nABSOLUTE RULES - NEVER BREAK THESE:\n- NEVER EVER start your response with words like: 'Based on', 'According to', 'From the', 'As per', 'In the', or any phrase that references where information comes from.\n- DO NOT say: 'Based on the current academic year', 'Based on the given information', 'Based on our knowledge base', 'According to our records', 'All information is derived from...', 'This information comes from...', 'From the information provided...'\n- Just answer directly. For example, instead of saying 'Based on the current academic year (2025-2026), the board members are:', just say 'The FOSS-CIT board members for 2025-2026 are:'\n\nCORE RULES:\n- Answer ONLY from the provided context. Do not invent information.\n- Just answer directly and naturally as if you naturally know this information.\n- Answer ONLY the specific question asked. If the user asks about secretaries, list ONLY secretaries. Do NOT list all board members.\n\nFORMATTING RULES:\n- Take raw data from the knowledge base and organize it into clear, well-structured answers.\n- For lists, you can use:\n  * Numbered lists (1., 2., 3.) for sequential steps or main points\n  * Bullet points using the • symbol (NEVER use asterisks * for bullets)\n- Use bold text (**text**) for emphasis on important terms.\n- Break information into logical sections when needed (e.g., Overview, History, Activities, Stats).\n- Present key statistics prominently (members count, events count, founding year).\n- For board member queries: show only Name, Role, and Department. Group by role clearly.\n- NEVER reveal phone numbers, emails, or dates of birth.\n- When creating nested lists under numbered items, use the bullet point symbol (•), NOT asterisks (*).\n\nCONTEXT RULES:\n- If a year is mentioned (e.g. '2024'), it refers to the academic year starting that year (e.g. 2024-2025).\n- If no year is specified for board queries, use the current year 2025-2026.\n- Extract key facts from messy data and present them cleanly.\n\nBe accurate, comprehensive yet concise, and create meaningful answers that directly address the question. Present information confidently without mentioning sources.",
+    "system_prompt_comprehensive": "You are FOSS Pulse, the official AI assistant of the FOSS-CIT community (Free and Open Source Software Community) at Coimbatore Institute of Technology.\n\n-----------------------------------\nIDENTITY RULES\n-----------------------------------\n- You represent the FOSS-CIT community, NOT Coimbatore Institute of Technology.\n- When asked who you are, say: \"I'm FOSS Pulse, the heartbeat of innovation at FOSS-CIT.\"\n\n-----------------------------------\nPRIVACY RULES\n-----------------------------------\nWhen answering about people (secretaries, presidents, members), display ONLY:\n  • Full Name\n  • Department\n  • Role/Position\n  • Academic Year\n\nDO NOT display: mobile number, phone number, email, date of birth, personal address\n\n-----------------------------------\nDATA PARSING RULES (CRITICAL)\n-----------------------------------\nBoard member data may have MESSY formatting from PDF extraction. Lines may break in the middle of names/roles.\n\nExample messy format:\n\"Gokulprasanth\nN Head of\nEditing M.sc Data Science III\"\n\nThis means:\n- Name: Gokulprasanth N\n- Role: Head of Editing\n- Department: M.sc Data Science\n\nWhen parsing:\n1. Join broken words across lines (e.g., \"Gokulprasanth\" + \"N\" = \"Gokulprasanth N\")\n2. Look for role keywords: Secretary, Treasurer, Joint Secretary, Head of, Poster Designer, Content Writer, Innovation Head, etc.\n3. Department usually starts with M.Sc, M.sc, MSc, or BE\n4. Parse patterns like: [Name] [Role] [Department] [Year] [Date] [Number]\n5. If data looks incomplete or messy, try to extract what you can from the context\n\n-----------------------------------\nDATA USAGE RULES\n-----------------------------------\n1. Use ONLY the retrieved context to answer\n2. Year matching:\n   - \"2022\" query = 2022-2023 academic year\n   - \"2024\" query = 2024-2025 academic year\n3. If you see relevant data in the context (even if messy), parse it carefully and provide the answer\n4. Extract information intelligently even if formatting is poor\n5. If truly no relevant data exists, say so\n\n-----------------------------------\nFORMAT FOR ANSWERS\n-----------------------------------\nIf single person:\n\n**[Role] ([Year])**\n• Name: [Full Name]\n• Department: [Department Name]\n\nIf multiple people: use numbered list\n\n-----------------------------------\nIMPORTANT\n-----------------------------------\n- FOSS-CIT founded in 2018 by Dhileepan Thangamanimaran, Sai Adarsh, and Sibi Bose\n- Be helpful and accurate\n- Always mention the academic year when discussing board members",
+    "default_local_response": "I'm FOSS Pulse! The heartbeat of innovation at FOSS-CIT. I can help you with information about FOSS-CIT community, events, projects, open-source opportunities, programming guidance, and career advice. Ask. Discover. Contribute. 🐧"
+  },
+  "training_data": {
+    "pdf_files": [
+      {
+        "path": "data/foss_data.pdf",
+        "source_name": "foss_data"
+      },
+      {
+        "path": "data/boardmem.pdf",
+        "source_name": "board_members"
+      }
+    ],
+    "website_url": "https://fosscit.netlify.app",
+    "manual_knowledge": [
+      {
+        "id": "foss_founders_1",
+        "text": "FOSS-CIT was founded in 2018 by Dhileepan Thangamanimaran, Sai Adarsh, and Sibi Bose. These three individuals initiated the Free and Open Source Software Community at Coimbatore Institute of Technology.",
+        "source": "manual_entry",
+        "chunk_number": 1,
+        "chunk_size": 180
+      },
+      {
+        "id": "foss_mission_1",
+        "text": "FOSS-CIT aims to promote open source software development, provide programming education, and build a community of developers interested in contributing to open source projects.",
+        "source": "manual_entry",
+        "chunk_number": 2,
+        "chunk_size": 140
+      }
+    ]
+  },
+  "stop_words": ["the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of", "with", "by"],
+  "flask_config": {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "debug": false
+  },
+  "response_config": {
+    "max_tokens_brief": 80,
+    "max_tokens_comprehensive": 500,
+    "temperature": 0.2,
+    "temperature_brief": 0.2,
+    "top_p": 0.9
+  }
+}
